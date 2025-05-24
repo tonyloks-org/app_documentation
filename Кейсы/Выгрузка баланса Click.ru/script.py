@@ -76,7 +76,7 @@ def get_click_ru_users_accounts_from_api() -> Optional[List[Dict[str, Any]]]:
             None — если произошла ошибка при запросе или парсинге.
 
     Raises:
-        Не выбрасывает исключения наружу, все ошибки логируются и возвращается None.
+        Exception: Если произошла ошибка при запросе к API или при обработке ответа.
     """
     api_request_headers: Dict[str, str] = {
         "Accept": "application/json",
@@ -102,8 +102,11 @@ def execute_clickhouse_query(query: str, data: Optional[str] = None) -> None:
         query (str): SQL-запрос для выполнения.
         data (Optional[str]): Данные для отправки (например, JSON для INSERT). По умолчанию None.
 
+    Returns:
+        None
+
     Raises:
-        requests.RequestException: При ошибке HTTP-запроса.
+        Exception: Если произошла любая ошибка при выполнении HTTP-запроса или обработке ответа.
     """
     request_params = {"query": query}
     
