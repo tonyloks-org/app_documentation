@@ -47,21 +47,9 @@
     ```bash
     git pull
     ```
-3. Остановите старое приложение:
+3. Обновите и перезапустите контейнеры до последней версии одной командой:
     ```bash
-    docker-compose down
-    ```
-4. Скачайте новые контейнеры:
-    ```bash
-    docker-compose pull
-    ```
-5. Соберите новое приложение:
-    ```bash
-    docker-compose build
-    ```
-6. Запустите приложение:
-    ```bash
-    docker-compose up -d
+    docker compose up -d --pull always --force-recreate
     ```
 
 ---
