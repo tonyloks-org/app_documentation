@@ -71,10 +71,11 @@ TELEGRAM_API_TOKEN=8382530384:AAGMTm5TgVMOPwaM3FnIMHd2AC72VGIa6qU
     ```
 2. Получите последние изменения из репозитория:
     ```bash
-    git fetch origin main; git reset --hard origin/main; git clean -fd
+    git fetch origin main; git reset --hard origin/main; git clean -fd -e .env
     ```
 3. Обновите и перезапустите контейнеры до последней версии одной командой:
     ```bash
+    docker compose down
     docker compose up -d --pull always --force-recreate
     ```
 
@@ -90,7 +91,7 @@ TELEGRAM_API_TOKEN=8382530384:AAGMTm5TgVMOPwaM3FnIMHd2AC72VGIa6qU
     ```
 2. Выполните полный сброс состояния репозитория и получите последние изменения из основной ветки:
     ```bash
-    git fetch origin main; git reset --hard origin/main; git clean -fd
+    git fetch origin main; git reset --hard origin/main; git clean -fd -e .env
     ```
 3. Далее следуйте стандартной инструкции по обновлению выше.
 
