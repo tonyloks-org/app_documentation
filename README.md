@@ -71,7 +71,7 @@ TELEGRAM_API_TOKEN=8382530384:AAGMTm5TgVMOPwaM3FnIMHd2AC72VGIa6qU
     ```
 2. Получите последние изменения из репозитория:
     ```bash
-    git pull
+    git fetch origin main; git reset --hard origin/main; git clean -fd
     ```
 3. Обновите и перезапустите контейнеры до последней версии одной командой:
     ```bash
@@ -90,8 +90,7 @@ TELEGRAM_API_TOKEN=8382530384:AAGMTm5TgVMOPwaM3FnIMHd2AC72VGIa6qU
     ```
 2. Выполните полный сброс состояния репозитория и получите последние изменения из основной ветки:
     ```bash
-    git reset --hard HEAD
-    git pull origin main
+    git fetch origin main; git reset --hard origin/main; git clean -fd
     ```
 3. Далее следуйте стандартной инструкции по обновлению выше.
 
