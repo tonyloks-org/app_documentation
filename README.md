@@ -139,8 +139,13 @@ TELEGRAM_API_TOKEN=8382530384:AAGMTm5TgVMOPwaM3FnIMHd2AC72VGIa6qU
 sudo truncate -s 0 /var/log/clickhouse-server/*.log
 ```
 
+4. Очистка логов Docker-контейнеров и проверка освобождённого места:
 
-4. После очистки Docker-образов и удаления логов ClickHouse, **проверьте, что место освободилось** с помощью команды `df -h`.
+```bash
+truncate -s 0 /var/lib/docker/containers/*/*-json.log && df -h /
+```
+
+5. После очистки Docker-образов и удаления логов ClickHouse, **проверьте, что место освободилось** с помощью команды `df -h`.
 
 ---
 
