@@ -70,33 +70,19 @@ TELEGRAM_API_TOKEN=8382530384:AAGMTm5TgVMOPwaM3FnIMHd2AC72VGIa6qU
 
 #### ❓ Вопрос: **Как мне обновить приложение?**
 
-✅ Ответ: Чтобы обновить приложение, выполните следующие действия:
+✅ Ответ: Обновляем одним скриптом `update_aoyad_app.sh` (ставится вместе с приложением, путь по умолчанию `/opt/aoyad_app`).
 
-1. Перейдите в папку с приложением и убедитесь, что в терминале путь отображается корректно:
-
+1. Перейдите в каталог приложения (`cd /opt/aoyad_app` или туда, где лежит `docker-compose.yml`) и убедитесь, что `.env` на месте.
+2. Запустите скрипт (первый раз можно выдать права: `chmod +x update_aoyad_app.sh`):
    ```bash
-   cd aoyad_app
+   bash update_aoyad_app.sh
    ```
-2. Остановите текущий стек, чтобы не осталось контейнеров от старого compose:
-
-   ```bash
-   docker compose down --remove-orphans
-
-   docker rm -f aoyad_app-front-app-1 aoyad_app-etl-app-1 aoyad_app-scheduler-app-1 aoyad_app-main-app-1
-   ```
-
-   > Данные в volume (например, база в `db-data`) сохранятся. Не добавляйте `--volumes`, если хотите оставить данные.
-   >
-3. Получите последние изменения из репозитория (файл `.env` сохраняем):
-
-   ```bash
-   git fetch origin main; git reset --hard origin/main; git clean -fd -e .env
-   ```
-4. Обновите и перезапустите контейнеры до последней версии:
-
-   ```bash
-   docker compose up -d --pull always --force-recreate
-   ```
+3. Скрипт сам:
+   - останавливает стек `docker compose down --remove-orphans`;
+   - удаляет старые контейнеры со старыми именами (front/etl/scheduler/main);
+   - делает `git fetch/reset/clean` c сохранением `.env`;
+   - тянет образы и поднимает их заново с `--pull always --force-recreate`;
+   - выводит статус контейнеров. Логи сервисов: `docker compose logs -f`.
 
 ---
 
