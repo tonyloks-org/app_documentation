@@ -69,19 +69,15 @@ TELEGRAM_API_TOKEN=8382530384:AAGMTm5TgVMOPwaM3FnIMHd2AC72VGIa6qU
     ```bash
     cd aoyad_app
     ```
-2. Остановите текущий стек, чтобы не осталось контейнеров от старого compose:
-    ```bash
-    docker compose down --remove-orphans
-    ```
-   > Данные в volume (например, база в `db-data`) сохранятся. Не добавляйте `--volumes`, если хотите оставить данные.
-3. Получите последние изменения из репозитория (файл `.env` сохраняем):
+2. Получите последние изменения из репозитория (файл `.env` сохраняем):
     ```bash
     git fetch origin main; git reset --hard origin/main; git clean -fd -e .env
     ```
-4. Обновите и перезапустите контейнеры до последней версии:
+3. Запустите скрипт обновления (при необходимости сделайте исполняемым: `chmod +x update_aoyad_app.sh`):
     ```bash
-    docker compose up -d --pull always --force-recreate
+    bash update_aoyad_app.sh
     ```
+   Скрипт сам остановит старые контейнеры, подтянет образы и запустит их заново.
 
 ---
 
